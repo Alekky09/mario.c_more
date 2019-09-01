@@ -1,43 +1,33 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int get_positive_int (string prompt);
+int hashes(void);
 
 int main(void)
 {
-    int height = get_positive_int("Height:");
-    if(height==1){
-        printf("#  #\n");
+    printf("How many columns? (1-8)\n"); //asks user how many columns they want
+    int height;
+    do
+    {
+        height = get_int("Column height (1-8): "); //gets the column height
     }
-    else if(height==2){
-        printf(" #  #\n##  ##\n");
-    }
-    else if(height==3){
-        printf("  #  #\n ##  ##\n###  ###\n");
-    }
-    else if(height==4){
-        printf("   #  #\n  ##  ##\n ###  ###\n####  ####\n");
-    }
-    else if(height==5){
-        printf("    #  #\n   ##  ##\n  ###  ###\n ####  ####\n#####  #####\n");
-    }
-    else if(height==6){
-        printf("     #  #\n    ##  ##\n   ###  ###\n  ####  ####\n #####  #####\n######  ######\n");
-    }
-    else if(height==7){
-        printf("      #  #\n     ##  ##\n    ###  ###\n   ####  ####\n  #####  #####\n ######  ######\n#######  #######\n");
-    }
-    else if(height==8){
-        printf("       #  #\n      ##  ##\n     ###  ###\n    ####  ####\n   #####  #####\n  ######  ######\n #######  #######\n########  ########\n");
-    }
-}
+    while ((height < 1) || (height > 8)); // only allows numbers 1-23
 
-int get_positive_int (string prompt)
-{
-    int n;
-    do{
-        n=get_int ("Height:");
-    }
-    while (n<1 || n>8);
-    return n;
+    for (int loop = 1; loop <= height; loop++)
+        {
+        for (int space = (height - loop); space > 0; space--)
+            {
+            printf(" "); // prints the blank spaces
+            }
+        for (int length = 1; length <= loop; length++)
+            {
+            printf("#"); // prints the hashtags
+            }
+        printf("  ");
+        for (int length = 1; length <= loop; length++)
+            {
+            printf("#"); // prints the hashtags
+            }
+        printf("\n");
+        }
 }
